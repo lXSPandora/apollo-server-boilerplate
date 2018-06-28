@@ -1,18 +1,27 @@
+import 'babel-polyfill';
 import { ApolloServer } from 'apollo-server';
 import globalResolvers from './graphql/GlobalResolvers';
 import globalQuery from './graphql/TypeDefinitions';
+import { connectDatabase } from './database';
 
-const server = new ApolloServer({
-  resolvers: globalResolvers,
-  typeDefs: globalQuery,
-  tracing: true,
-});
+(async () => {
+  try {
+    const info = await connectDatabase();
+    console.log(`Connected to mongodb 🍃 at ${info.host}:${info.port}/${info.name}`);
+  } catch (error) {
+    console.error('Unable to connect to database');
+    process.exit(1);
+  }
 
-const graphqlPort = 3000;
-
-server.setGraphQLPath('graphql');
-
-server.listen(graphqlPort).then(({ url }) => {
-  console.log(`🚀 Apollo server ready on ${url}`);
-  console.log('⚡️ Playground exposed on /graphql');
-});
+  const server = new ApolloServer({
+    resolvers: globalResolvers,
+    typeDefs: globalQuery,
+    tracing: true,
+  });
+  const graphqlPort = 3000;
+  server.setGraphQLPath('graphql');
+  server.listen(graphqlPort).then(({ url }) => {
+    console.log(`🚀 Apollo server ready on ${url}`);
+    console.log('⚡️ Playground exposed on /graphql');
+  });
+})();

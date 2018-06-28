@@ -1,6 +1,6 @@
 // @flow
 import mongoose from 'mongoose';
-import { databaseConfig } from './config';
+import { MONGO_URI } from './config';
 
 export function connectDatabase() {
   return new Promise((resolve, reject) => {
@@ -10,6 +10,6 @@ export function connectDatabase() {
       .on('close', () => console.log('Database connection closed.'))
       .once('open', () => resolve(mongoose.connections[0]));
 
-    mongoose.connect(databaseConfig);
+    mongoose.connect(MONGO_URI);
   });
 }
