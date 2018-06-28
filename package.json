@@ -35,6 +35,14 @@
     "graphql-tag": "^2.9.2",
     "mongoose": "^5.1.7"
   },
+  "pre-commit": "lint:staged",
+  "lint-staged": {
+    "*.js": [
+      "yarn prettier",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "scripts": {
     "babel-node": "babel-node",
     "start": "nodemon --exec npm run babel-node -- src/index.js",
