@@ -38,7 +38,6 @@
   "pre-commit": "lint:staged",
   "lint-staged": {
     "*.js": [
-      "yarn prettier",
       "eslint --fix",
       "git add"
     ]
@@ -47,8 +46,6 @@
     "babel-node": "babel-node",
     "start": "nodemon --exec npm run babel-node -- src/index.js",
     "lint": "eslint \"src/**/*.js*\"",
-    "lint:staged": "lint-staged",
-    "prettier": "prettier-eslint --write",
-    "prettier:all": "prettier-eslint --write \"src/**/*.js*\""
+    "lint:staged": "lint-staged"
   }
 }
