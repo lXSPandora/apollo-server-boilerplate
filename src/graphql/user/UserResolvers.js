@@ -1,3 +1,4 @@
+// @flow
 import user from './Mock.json';
 
 const userResolvers = {

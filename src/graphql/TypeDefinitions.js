@@ -1,5 +1,8 @@
+// @flow
 import { gql } from 'apollo-server';
-import userTypes, { UserType } from './user/UserTypes';
+import userTypes from './user/UserTypes';
+
+import type { UserType } from './user/UserTypes';
 
 export type QueryTypeDef = {
   query: {

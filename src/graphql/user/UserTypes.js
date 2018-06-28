@@ -1,3 +1,4 @@
+// @flow
 import { gql } from 'apollo-server';
 
 export type UserType = {

@@ -1,3 +1,4 @@
+// @flow
 import userResolvers from './user/UserResolvers';
 
 const globalResolvers = {
