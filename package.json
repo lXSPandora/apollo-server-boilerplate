@@ -1,0 +1,46 @@
+{
+  "name": "apollo-server-boilerplate",
+  "version": "1.0.0",
+  "description": "apollo server es6 boilerplate",
+  "author": "lXSPandora",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-conf-env": "^1.1.2",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "flow-bin": "^0.75.0",
+    "lint-staged": "^7.2.0",
+    "nodemon": "^1.17.5",
+    "pre-commit": "^1.2.2",
+    "prettier-eslint": "^8.8.2"
+  },
+  "dependencies": {
+    "@entria/graphql-mongoose-loader": "^1.8.3",
+    "apollo-server": "^2.0.0-rc.5",
+    "babel-polyfill": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "dataloader": "^1.4.0",
+    "dotenv-safe": "^6.0.0",
+    "graphql": "^0.13.2",
+    "graphql-playground-middleware": "^1.1.2",
+    "graphql-tag": "^2.9.2",
+    "mongoose": "^5.1.7"
+  },
+  "scripts": {
+    "babel-node": "babel-node",
+    "start": "nodemon --exec npm run babel-node -- src/index.js",
+    "lint": "eslint \"src/**/*.js*\"",
+    "lint:staged": "lint-staged",
+    "prettier": "prettier-eslint --write",
+    "prettier:all": "prettier-eslint --write \"src/**/*.js*\""
+  }
+}
