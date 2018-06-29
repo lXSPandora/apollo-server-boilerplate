@@ -18,8 +18,6 @@ Apollo Server is built with the following principles in mind:
 * **Simplicity**: by keeping things simple, Apollo Server is easier to use, easier to contribute to, and more secure
 * **Performance**: Apollo Server is well-tested and production-ready - no modifications needed
 
-Anyone is welcome to contribute to Apollo Server, just read [CONTRIBUTING.md](./CONTRIBUTING.md), take a look at the [roadmap](./ROADMAP.md) and make your first PR!
-
 ## How to get started with this boilerplate
 
 - 1 - `https://github.com/lXSPandora/apollo-server-boilerplate.git`
