@@ -46,6 +46,12 @@
     "babel-node": "babel-node",
     "start": "nodemon --exec npm run babel-node -- src/index.js",
     "lint": "eslint \"src/**/*.js*\"",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "docker:build": "cross-conf-env docker build --tag $npm_package_config_imageName .",
+    "docker:clean": "cross-conf-env ./scripts/clean.sh",
+    "docker:debugmessage": "echo Docker Debug Completed Successfully! Hit Ctrl+C to terminate log tailing.",
+    "docker:run": "run-s -c docker:clean docker:build docker:runHelper",
+    "docker:runHelper": "cross-conf-env ./scripts/run-helper.sh",
+    "docker:taillogs": "cross-conf-env ./scripts/logs.sh"
   }
 }
