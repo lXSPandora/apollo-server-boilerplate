@@ -11,9 +11,16 @@ export type QueryTypeDef = {
 };
 
 const queryTypes = gql`
+  type PageInfo {
+    hasNextPage: Boolean!,
+    hasPreviousPage: Boolean!,
+    startCursor: String,
+    endCursor: String,
+  }
+
   type Query {
     me: User,
-    users: [User],
+    users(search: String, first: Int, after: String, before: String, last: Int): UserConnection,
     user(id: ID!): User,
   }
 
