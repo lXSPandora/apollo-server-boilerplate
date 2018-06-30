@@ -12,7 +12,8 @@ export type QueryTypeDef = {
 
 const queryTypes = gql`
   type Query {
-    me: User
+    me: User,
+    users: [User],
   }
 `;
 
