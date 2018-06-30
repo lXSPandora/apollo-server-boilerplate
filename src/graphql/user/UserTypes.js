@@ -15,6 +15,11 @@ const userType = gql`
     email: String,
     active: Boolean,
   }
+
+  type UserConnection {
+    count: Int,
+    users: [User],
+  }
 `;
 
 export default userType;

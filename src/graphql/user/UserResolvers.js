@@ -12,6 +12,12 @@ type FindOneUser = {
   id: string,
 }
 
+type ConnectionArgs = {
+  search: string,
+  after: string,
+  first: number,
+}
+
 const userResolvers = {
   me: () => ({
     _id: '12312423412341',
@@ -19,7 +25,23 @@ const userResolvers = {
     email: 'luizepauloxd@gmail.com',
     active: true,
   }),
-  users: () => UserModel.find({}),
+  users: (obj: UserType, args: ConnectionArgs) => {
+    const { search, after, first } = args;
+
+    const count = first || 10;
+
+    if (!search) {
+      return {
+        count: UserModel.count(),
+        users: UserModel.find({}, { skip: after, limt: count }),
+      };
+    }
+
+    return {
+      count: UserModel.count({ name: search }),
+      users: UserModel.find({ name: search }, { skip: after, limt: count }),
+    };
+  },
   user: async (obj: UserType, args: FindOneUser) => {
     const { id } = args;
     return UserModel.findOne({ _id: id });
