@@ -8,6 +8,10 @@ type UserAdd = {
   password: string,
 }
 
+type FindOneUser = {
+  id: string,
+}
+
 const userResolvers = {
   me: () => ({
     _id: '12312423412341',
@@ -16,11 +20,23 @@ const userResolvers = {
     active: true,
   }),
   users: () => UserModel.find({}),
+  user: async (obj: UserType, args: FindOneUser) => {
+    const { id } = args;
+    return UserModel.findOne({ _id: id });
+  },
   userAdd: async (obj: UserType, args: UserAdd) => {
     const { email, name, password } = args;
 
     if (!email || !name || !password) {
       throw new Error('Please fill all the fields');
+    }
+
+    const checkEmail = UserModel.findOne({
+      email,
+    });
+
+    if (!checkEmail) {
+      throw new Error('This email is already registered!');
     }
 
     const user = new UserModel({
@@ -33,7 +49,7 @@ const userResolvers = {
 
     const { _id } = user;
 
-    return UserModel.find({ _id });
+    return UserModel.findOne({ _id });
   },
 };
 
