@@ -1,8 +1,14 @@
 // @flow
-import user from './Mock.json';
+import UserModel from './UserModel';
 
 const userResolvers = {
-  me: () => user,
+  me: () => ({
+    _id: '12312423412341',
+    name: 'Luiz Fernando Sousa Camargo',
+    email: 'luizepauloxd@gmail.com',
+    active: true,
+  }),
+  users: () => UserModel.find({}),
 };
 
 export default userResolvers;
