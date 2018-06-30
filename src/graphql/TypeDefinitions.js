@@ -15,6 +15,10 @@ const queryTypes = gql`
     me: User,
     users: [User],
   }
+
+  type Mutation {
+    userAdd(name: String!, email: String!, password: String!): User,
+  }
 `;
 
 const globalQuery = [
