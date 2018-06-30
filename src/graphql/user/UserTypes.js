@@ -2,16 +2,18 @@
 import { gql } from 'apollo-server';
 
 export type UserType = {
-  username: string,
+  _id: string,
   name: string,
   email: string,
+  active: boolean,
 };
 
 const userType = gql`
-  type User { 
-    username: String,
+  type User {
+    _id: String,
     name: String,
     email: String,
+    active: Boolean,
   }
 `;
 

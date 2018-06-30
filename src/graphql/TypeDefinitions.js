@@ -12,7 +12,13 @@ export type QueryTypeDef = {
 
 const queryTypes = gql`
   type Query {
-    me: User
+    me: User,
+    users: [User],
+    user(id: ID!): User,
+  }
+
+  type Mutation {
+    userAdd(name: String!, email: String!, password: String!): User,
   }
 `;
 
