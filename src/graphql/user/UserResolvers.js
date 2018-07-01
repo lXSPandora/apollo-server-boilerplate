@@ -6,17 +6,17 @@ type UserAdd = {
   email: string,
   name: string,
   password: string,
-}
+};
 
 type FindOneUser = {
   id: string,
-}
+};
 
 type ConnectionArgs = {
   search: string,
   after: string,
   first: number,
-}
+};
 
 const userResolvers = {
   me: () => ({
@@ -36,9 +36,11 @@ const userResolvers = {
       }
       : {};
 
-    const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(first);
-
-    console.log(users);
+    const users = first === 10
+      ? UserModel.find(where).limit(first)
+      : UserModel.find(where)
+        .skip(after)
+        .limit(first);
 
     return {
       count: UserModel.find().count(),

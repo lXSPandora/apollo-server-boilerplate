@@ -21,6 +21,7 @@
     "lint-staged": "^7.2.0",
     "nodemon": "^1.17.5",
     "pre-commit": "^1.2.2",
+    "prettier": "^1.13.7",
     "prettier-eslint": "^8.8.2"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
   "pre-commit": "lint:staged",
   "lint-staged": {
     "*.js": [
+      "yarn prettier",
       "eslint --fix",
       "git add"
     ]
@@ -47,6 +49,8 @@
     "start": "nodemon --exec npm run babel-node -- src/index.js",
     "lint": "eslint \"src/**/*.js*\"",
     "lint:staged": "lint-staged",
+    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120",
+    "prettier:all": "prettier --write --single-quote true --trailing-comma all --print-width 120 --write 'src/**/*.js'",
     "docker:build": "cross-conf-env docker build --tag $npm_package_config_imageName .",
     "docker:clean": "cross-conf-env ./scripts/clean.sh",
     "docker:debugmessage": "echo Docker Debug Completed Successfully! Hit Ctrl+C to terminate log tailing.",
