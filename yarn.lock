@@ -85,10 +85,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@entria/graphql-mongoose-loader@^1.8.3":
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/@entria/graphql-mongoose-loader/-/graphql-mongoose-loader-1.8.3.tgz#939f9e4b398de07d581b82f718c6e4371a95ef67"
-
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
