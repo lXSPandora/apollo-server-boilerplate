@@ -13,7 +13,7 @@ export type QueryTypeDef = {
 const queryTypes = gql`
   type Query {
     me: User,
-    users: [User],
+    users(search: String, first: Int, after: Int!): UserConnection,
     user(id: ID!): User,
   }
 

@@ -12,6 +12,12 @@ type FindOneUser = {
   id: string,
 }
 
+type ConnectionArgs = {
+  search: string,
+  after: string,
+  first: number,
+}
+
 const userResolvers = {
   me: () => ({
     _id: '12312423412341',
@@ -19,7 +25,26 @@ const userResolvers = {
     email: 'luizepauloxd@gmail.com',
     active: true,
   }),
-  users: () => UserModel.find({}),
+  users: (obj: UserType, args: ConnectionArgs) => {
+    const { search, after, first } = args;
+
+    const where = search
+      ? {
+        name: {
+          $regex: new RegExp(`^${search}`, 'ig'),
+        },
+      }
+      : {};
+
+    const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(first);
+
+    console.log(users);
+
+    return {
+      count: UserModel.find().count(),
+      users,
+    };
+  },
   user: async (obj: UserType, args: FindOneUser) => {
     const { id } = args;
     return UserModel.findOne({ _id: id });
