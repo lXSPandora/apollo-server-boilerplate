@@ -33,6 +33,7 @@
     "graphql": "^0.13.2",
     "graphql-playground-middleware": "^1.1.2",
     "graphql-tag": "^2.9.2",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.1.7"
   },
   "pre-commit": "lint:staged",
