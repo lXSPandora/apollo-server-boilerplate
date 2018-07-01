@@ -1,6 +1,8 @@
 // @flow
 import UserModel from './UserModel';
+import { generateToken } from '../utils';
 import type { UserType } from './UserTypes';
+import type { Context } from '../TypeDefinitions';
 
 type UserAdd = {
   email: string,
@@ -18,13 +20,13 @@ type ConnectionArgs = {
   first: number,
 };
 
+type Login = {
+  email: string,
+  password: string,
+};
+
 const userResolvers = {
-  me: () => ({
-    _id: '12312423412341',
-    name: 'Luiz Fernando Sousa Camargo',
-    email: 'luizepauloxd@gmail.com',
-    active: true,
-  }),
+  me: (obj: UserType, args: void, context: Context) => context.user,
   users: (obj: UserType, args: ConnectionArgs) => {
     const { search, after, first } = args;
 
@@ -51,6 +53,29 @@ const userResolvers = {
     const { id } = args;
     return UserModel.findOne({ _id: id });
   },
+
+  login: async (obj: UserType, args: Login) => {
+    const { email, password } = args;
+
+    const user = await UserModel.findOne({
+      email: email.toLowerCase(),
+    });
+
+    if (!user) {
+      throw new Error('Invalid email or password');
+    }
+
+    const correctPassword = user.authenticate(password);
+
+    if (!correctPassword) {
+      throw new Error('Invalid email or password');
+    }
+
+    return {
+      token: generateToken(user),
+    };
+  },
+
   userAdd: async (obj: UserType, args: UserAdd) => {
     const { email, name, password } = args;
 
@@ -74,9 +99,9 @@ const userResolvers = {
 
     await user.save();
 
-    const { _id } = user;
-
-    return UserModel.findOne({ _id });
+    return {
+      token: generateToken(user),
+    };
   },
 };
 

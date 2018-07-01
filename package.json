@@ -25,7 +25,6 @@
     "prettier-eslint": "^8.8.2"
   },
   "dependencies": {
-    "@entria/graphql-mongoose-loader": "^1.8.3",
     "apollo-server": "^2.0.0-rc.5",
     "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
@@ -34,6 +33,7 @@
     "graphql": "^0.13.2",
     "graphql-playground-middleware": "^1.1.2",
     "graphql-tag": "^2.9.2",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.1.7"
   },
   "pre-commit": "lint:staged",

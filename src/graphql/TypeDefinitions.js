@@ -1,13 +1,16 @@
 // @flow
 import { gql } from 'apollo-server';
 import userTypes from './user/UserTypes';
-
 import type { UserType } from './user/UserTypes';
 
 export type QueryTypeDef = {
   query: {
     user: UserType,
   },
+};
+
+export type Context = {
+  user: UserType,
 };
 
 const queryTypes = gql`
@@ -18,7 +21,8 @@ const queryTypes = gql`
   }
 
   type Mutation {
-    userAdd(name: String!, email: String!, password: String!): User
+    userAdd(name: String!, email: String!, password: String!): UserAuth
+    login(email: String!, password: String!): UserAuth
   }
 `;
 
