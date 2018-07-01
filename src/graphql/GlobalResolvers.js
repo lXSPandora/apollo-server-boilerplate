@@ -9,6 +9,7 @@ const globalResolvers = {
   },
   Mutation: {
     userAdd: userResolvers.userAdd,
+    login: userResolvers.login,
   },
 };
 

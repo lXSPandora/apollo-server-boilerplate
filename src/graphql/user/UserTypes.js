@@ -20,6 +20,10 @@ const userType = gql`
     count: Int
     users: [User]
   }
+
+  type UserAuth {
+    token: String
+  }
 `;
 
 export default userType;
