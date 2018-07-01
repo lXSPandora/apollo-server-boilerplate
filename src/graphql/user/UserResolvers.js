@@ -36,7 +36,7 @@ const userResolvers = {
       }
       : {};
 
-    const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(10);
+    const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(first);
 
     console.log(users);
 
