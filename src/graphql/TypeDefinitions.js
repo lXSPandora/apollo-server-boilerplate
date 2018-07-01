@@ -6,25 +6,22 @@ import type { UserType } from './user/UserTypes';
 
 export type QueryTypeDef = {
   query: {
-    user: UserType
+    user: UserType,
   },
 };
 
 const queryTypes = gql`
   type Query {
-    me: User,
-    users(search: String, first: Int, after: Int!): UserConnection,
-    user(id: ID!): User,
+    me: User
+    users(search: String, first: Int, after: Int!): UserConnection
+    user(id: ID!): User
   }
 
   type Mutation {
-    userAdd(name: String!, email: String!, password: String!): User,
+    userAdd(name: String!, email: String!, password: String!): User
   }
 `;
 
-const globalQuery = [
-  userTypes,
-  queryTypes,
-];
+const globalQuery = [userTypes, queryTypes];
 
 export default globalQuery;

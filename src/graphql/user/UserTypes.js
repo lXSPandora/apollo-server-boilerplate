@@ -10,15 +10,15 @@ export type UserType = {
 
 const userType = gql`
   type User {
-    _id: String,
-    name: String,
-    email: String,
-    active: Boolean,
+    _id: String
+    name: String
+    email: String
+    active: Boolean
   }
 
   type UserConnection {
-    count: Int,
-    users: [User],
+    count: Int
+    users: [User]
   }
 `;
 
