@@ -28,18 +28,21 @@ const userResolvers = {
   users: (obj: UserType, args: ConnectionArgs) => {
     const { search, after, first } = args;
 
-    const count = first || 10;
+    const where = search
+      ? {
+        name: {
+          $regex: new RegExp(`^${search}`, 'ig'),
+        },
+      }
+      : {};
 
-    if (!search) {
-      return {
-        count: UserModel.count(),
-        users: UserModel.find({}, { skip: after, limt: count }),
-      };
-    }
+    const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(10);
+
+    console.log(users);
 
     return {
-      count: UserModel.count({ name: search }),
-      users: UserModel.find({ name: search }, { skip: after, limt: count }),
+      count: UserModel.find().count(),
+      users,
     };
   },
   user: async (obj: UserType, args: FindOneUser) => {
