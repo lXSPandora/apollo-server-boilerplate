@@ -38,8 +38,6 @@ const userResolvers = {
 
     const users = first === 10 ? UserModel.find(where).limit(first) : UserModel.find(where).skip(after).limit(first);
 
-    console.log(users);
-
     return {
       count: UserModel.find().count(),
       users,
