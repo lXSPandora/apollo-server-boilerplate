@@ -33,6 +33,6 @@ Links to docker docs:
 [Docker Compose](https://docs.docker.com/compose/install/)
 [Docker](https://docs.docker.com/install/)
 
-- 1 - `yarn docker:up or npm run docker:up'
+- 1 - `yarn docker:up or npm run docker:up`
 
 Thanks to @rodrigooler @ErickWendel @Horaddrim
