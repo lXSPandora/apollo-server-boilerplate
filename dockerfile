@@ -1,16 +1,17 @@
 # Download base image nodejs
-FROM node:8-alpine
-
-# Create app directory
-RUN mkdir -p src
-
-COPY package.json /src/package.json
-
-RUN cd /src; npm install
+FROM node:8.11.3 as build-env
 
 COPY . /src
 
-WORKDIR src 
+WORKDIR src
+
+RUN npm install
+
+FROM node:8.11.3-alpine as runtime
+
+COPY --from=build-env src/ src/
+
+WORKDIR src
 
 CMD ["npm", "start"]
 

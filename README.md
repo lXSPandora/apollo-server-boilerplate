@@ -20,10 +20,19 @@ Apollo Server is built with the following principles in mind:
 
 ## How to get started with this boilerplate
 
+### Runnig some commands:
+
 - 1 - `https://github.com/lXSPandora/apollo-server-boilerplate.git`
 - 2 - `cd apollo-server-boilerplate`
 - 3 - `npm run start or yarn start`
 
-### Docker (Work in progress)!!
+### Using Docker:
+OBS: Make sure that docker and docker-compose is installed on your machine
 
-Thanks to @rodrigooler @ErickWendel
+Links to docker docs:
+[Docker Compose](https://docs.docker.com/compose/install/)
+[Docker](https://docs.docker.com/install/)
+
+- 1 - `yarn docker:up or npm run docker:up`
+
+Thanks to @rodrigooler @ErickWendel @Horaddrim
