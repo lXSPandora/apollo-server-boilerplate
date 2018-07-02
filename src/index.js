@@ -18,7 +18,7 @@ import { getUser } from './graphql/auth';
     typeDefs: globalQuery,
     // user authentication
     context: async ({ req }) => {
-      const token = req.headers.authorization || '';
+      const token = req.headers.authorization ? req.headers.authorization : '';
       const { user } = await getUser(token);
       return {
         user,
