@@ -51,11 +51,6 @@
     "lint:staged": "lint-staged",
     "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120",
     "prettier:all": "prettier --write --single-quote true --trailing-comma all --print-width 120 --write 'src/**/*.js'",
-    "docker:build": "cross-conf-env docker build --tag $npm_package_config_imageName .",
-    "docker:clean": "cross-conf-env ./scripts/clean.sh",
-    "docker:debugmessage": "echo Docker Debug Completed Successfully! Hit Ctrl+C to terminate log tailing.",
-    "docker:run": "run-s -c docker:clean docker:build docker:runHelper",
-    "docker:runHelper": "cross-conf-env ./scripts/run-helper.sh",
-    "docker:taillogs": "cross-conf-env ./scripts/logs.sh"
+    "docker:up": "docker-compose up --build"
   }
 }
