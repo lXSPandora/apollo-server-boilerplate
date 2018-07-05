@@ -2,8 +2,13 @@
 import jwt from 'jsonwebtoken';
 import UserModel from './user/UserModel';
 import { jwtSecret } from '../config';
+import type { UserType } from './user/UserTypes';
 
-export const getUser = async (token: string) => {
+type GetUser = {
+  user: ?UserType,
+};
+
+export const getUser = async (token: string): Promise<?GetUser> => {
   if (!token) {
     return {
       user: null,

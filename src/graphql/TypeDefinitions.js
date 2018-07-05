@@ -13,7 +13,7 @@ export type Context = {
   user: UserType,
 };
 
-const queryTypes = gql`
+const queryTypes: string = gql`
   type Query {
     me: User
     users(search: String, first: Int, after: Int!): UserConnection
@@ -26,6 +26,6 @@ const queryTypes = gql`
   }
 `;
 
-const globalQuery = [userTypes, queryTypes];
+const globalQuery: Array<string> = [userTypes, queryTypes];
 
 export default globalQuery;

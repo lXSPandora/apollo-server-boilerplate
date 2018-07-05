@@ -1,7 +1,12 @@
 // @flow
 import userResolvers from './user/UserResolvers';
 
-const globalResolvers = {
+type ResolversType = {
+  Query: Object,
+  Mutation: Object,
+};
+
+const globalResolvers: ResolversType = {
   Query: {
     me: userResolvers.me,
     users: userResolvers.users,
