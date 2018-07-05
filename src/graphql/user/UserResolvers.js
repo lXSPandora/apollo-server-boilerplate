@@ -1,7 +1,7 @@
 // @flow
 import UserModel from './UserModel';
 import { generateToken } from '../utils';
-import type { UserType } from './UserTypes';
+import type { UserType, UserConnection, UserAuth } from './UserTypes';
 import type { Context } from '../TypeDefinitions';
 
 type UserAdd = {
@@ -25,9 +25,9 @@ type Login = {
   password: string,
 };
 
-const userResolvers = {
+const userResolvers: Object = {
   me: (obj: UserType, args: void, context: Context) => context.user,
-  users: (obj: UserType, args: ConnectionArgs) => {
+  users: (obj: UserType, args: ConnectionArgs): UserConnection => {
     const { search, after, first } = args;
 
     const where = search
@@ -38,23 +38,26 @@ const userResolvers = {
       }
       : {};
 
-    const users = first === 10
+    const users = !after
       ? UserModel.find(where).limit(first)
       : UserModel.find(where)
         .skip(after)
         .limit(first);
 
     return {
-      count: UserModel.find().count(),
+      count: UserModel.count(),
       users,
     };
   },
-  user: async (obj: UserType, args: FindOneUser) => {
+  user: async (obj: UserType, args: FindOneUser): Promise<?UserType> => {
     const { id } = args;
-    return UserModel.findOne({ _id: id });
+
+    const user: UserType = UserModel.findOne({ _id: id });
+
+    return user;
   },
 
-  login: async (obj: UserType, args: Login) => {
+  login: async (obj: UserType, args: Login): Promise<?UserAuth> => {
     const { email, password } = args;
 
     const user = await UserModel.findOne({
@@ -76,7 +79,7 @@ const userResolvers = {
     };
   },
 
-  userAdd: async (obj: UserType, args: UserAdd) => {
+  userAdd: async (obj: UserType, args: UserAdd): Promise<?UserAuth> => {
     const { email, name, password } = args;
 
     if (!email || !name || !password) {
