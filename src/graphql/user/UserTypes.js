@@ -8,19 +8,26 @@ export type UserType = {
   active: boolean,
 };
 
-const userType = gql`
+export type UserConnection = {
+  count: number,
+  users: Array<UserType>,
+};
+
+export type UserAuth = {
+  token: string,
+};
+
+const userType: string = gql`
   type User {
     _id: String
     name: String
     email: String
     active: Boolean
   }
-
   type UserConnection {
     count: Int
     users: [User]
   }
-
   type UserAuth {
     token: String
   }
