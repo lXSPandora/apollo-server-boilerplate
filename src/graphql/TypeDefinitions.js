@@ -16,7 +16,7 @@ export type Context = {
 const queryTypes: string = gql`
   type Query {
     me: User
-    users(search: String, first: Int, after: Int!): UserConnection
+    users(search: String, first: Int!, after: Int): UserConnection
     user(id: ID!): User
   }
 
