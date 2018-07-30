@@ -23,6 +23,7 @@ const userType: string = gql`
     name: String
     email: String
     active: Boolean
+    posts(search: String, first: Int!, after: Int): PostConnection
   }
   type UserConnection {
     count: Int

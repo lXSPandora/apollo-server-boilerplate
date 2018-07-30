@@ -1,6 +1,7 @@
 // @flow
 import UserModel from './UserModel';
 import { generateToken } from '../utils';
+import postResolvers from '../posts/PostResolvers';
 import type { UserType, UserConnection, UserAuth } from './UserTypes';
 import type { Context } from '../TypeDefinitions';
 
@@ -26,7 +27,10 @@ type Login = {
 };
 
 const userResolvers: Object = {
-  me: (obj: UserType, args: void, context: Context) => context.user,
+  User: {
+    posts: ({ _id }: UserType, args: ConnectionArgs) => postResolvers.userPosts(args, _id),
+  },
+  me: (obj: UserType, args: void, context: Context): UserType => context.user,
   users: (obj: UserType, args: ConnectionArgs): UserConnection => {
     const { search, after, first } = args;
 
