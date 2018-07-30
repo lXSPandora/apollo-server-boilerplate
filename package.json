@@ -47,6 +47,7 @@
   "scripts": {
     "babel-node": "babel-node",
     "start": "nodemon --exec npm run babel-node -- src/index.js",
+    "debug": "nodemon --exec npm run babel-node -- src/index.js --inspect",
     "lint": "eslint \"src/**/*.js*\"",
     "lint:staged": "lint-staged",
     "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120",
